@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Created by erickchali on 10/9/14.
  */
 public class CrearLogin extends JFrame implements ActionListener {
+    String linea;
     File db;
     JTextField usuario;
     JLabel u,c;
@@ -53,6 +54,10 @@ public class CrearLogin extends JFrame implements ActionListener {
                 if(valores[1].equals(usuario)&&valores[2].equals(contra)){
                     if(valores[3].equals("1")){
                         System.out.println("Admin");
+                        for(int x = 0 ; x<=8 ; x++){
+                            linea += valores[x] + " ";
+                        }
+                        System.out.println(linea);
                         Admin a = new Admin();
                         a.recibirUsuario(valores[1]);
                         a.setSize(700,750);

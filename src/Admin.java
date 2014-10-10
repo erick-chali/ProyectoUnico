@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -32,6 +33,10 @@ public class Admin extends JFrame implements ActionListener {
     JComboBox<String> cbRolEmpleado;
     JRadioButton rbAgregarEmpleado,rbModificarEmpleado,rbEliminarEmpleado;
     ButtonGroup bgEmpleado;
+
+
+    String cadena;
+    int cont;
     public Admin(){
         super("Administradores");
         this.setLayout(new FlowLayout());
@@ -217,17 +222,21 @@ public class Admin extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent boton) {
         if(boton.getSource()==btnProductoAgregar){
-            String nombreArchivo = "Producto.csv";
-            File archivo = new File(nombreArchivo);
             try{
+                String nombreArchivo = "Producto.csv";
+                File archivo = new File(nombreArchivo);
                 Scanner ingresoDatos = new Scanner(archivo);
+                cont=0;
                 while(ingresoDatos.hasNext()){
                     String data = ingresoDatos.next();
                     String[] valores = data.split(",");
-                    System.out.println(valores[0]+" "+valores[1]+" "+valores[2]+" "+valores[3]+" "+valores[4]);
+                    cadena = valores[0] + " " + valores[1].toString() + " " + valores[2] + " " + valores[3];
+                    System.out.println(cadena);
+                    cont=cont+1;
                 }
                 ingresoDatos.close();
-            }catch(Exception e){
+                System.out.println("" + cont);
+            }catch(FileNotFoundException e){
                 System.out.println("No hay archivo");
             }
         }
