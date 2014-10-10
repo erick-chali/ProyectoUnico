@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 
 /**
  * Created by erickchali on 10/9/14.
@@ -9,6 +11,7 @@ import java.awt.event.ActionListener;
 public class Admin extends JFrame implements ActionListener {
 
     //componentes principales
+    String tipoArchivo;
     String leyenda;
     JTabbedPane tabs;
     JButton cerrarSesion;
@@ -212,7 +215,21 @@ public class Admin extends JFrame implements ActionListener {
         this.leyenda = usuario.toUpperCase();
     }
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent boton) {
+        if(boton.getSource()==btnProductoAgregar){
+            String nombreArchivo = "Producto.csv";
+            File archivo = new File(nombreArchivo);
+            try{
+                Scanner ingresoDatos = new Scanner(archivo);
+                while(ingresoDatos.hasNext()){
+                    String data = ingresoDatos.next();
+                    String[] valores = data.split(",");
+                    System.out.println(valores[0]+" "+valores[1]+" "+valores[2]+" "+valores[3]+" "+valores[4]);
+                }
+                ingresoDatos.close();
+            }catch(Exception e){
+                System.out.println("No hay archivo");
+            }
+        }
     }
 }
