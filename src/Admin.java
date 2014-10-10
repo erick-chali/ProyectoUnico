@@ -16,6 +16,11 @@ public class Admin extends JFrame implements ActionListener {
     JPanel reporte, producto, venta, empleado;
     //componentes tab reportes
     //componentes tab producto
+    JLabel lblCodigoProducto,lblNombreProducto,lblPrecioProducto,lblCantidadProducto;
+    JTextField txtCodigoProducto,txtNombreProducto,txtPrecioProducto,txtCantidadProducto;
+    JButton btnProductoAgregar, btnProductoModificar, btnProductoEliminar;
+    JRadioButton rbAgregarProducto,rbModificarProducto,rbEliminarProducto;
+    ButtonGroup bgProducto;
     //componentes tab venta
     //componentes tab empleados
     JButton btnEmpleadosAgregar,btnEmpleadosModificar,btnEmpleadosEliminar;
@@ -43,7 +48,10 @@ public class Admin extends JFrame implements ActionListener {
     public void iniciarComponentes() {
         crearPantallaPrincipal();
         crearModuloEmpleado();
+        crearModuloProducto();
     }
+
+
 
     public void crearPantallaPrincipal() {
         tabs = new JTabbedPane();
@@ -64,6 +72,59 @@ public class Admin extends JFrame implements ActionListener {
         empleado =  new JPanel();
         empleado.setPreferredSize(new Dimension(680, 600));
         empleado.setLayout(new FlowLayout());
+    }
+    public void crearModuloProducto() {
+        bgProducto = new ButtonGroup();
+        rbAgregarProducto = new JRadioButton("Agreagar");
+        rbAgregarProducto.addActionListener(this);
+        rbModificarProducto = new JRadioButton("Modificar");
+        rbModificarProducto.addActionListener(this);
+        rbEliminarProducto = new JRadioButton("Eliminar");
+        rbEliminarProducto.addActionListener(this);
+        bgProducto.add(rbAgregarProducto);
+        bgProducto.add(rbModificarProducto);
+        bgProducto.add(rbEliminarProducto);
+
+        lblCodigoProducto = new JLabel("Codigo");
+        lblCodigoProducto.setPreferredSize(new Dimension(680, 25));
+        lblNombreProducto = new JLabel("Nombre");
+        lblNombreProducto.setPreferredSize(new Dimension(680, 25));
+        lblPrecioProducto = new JLabel("Precio");
+        lblPrecioProducto.setPreferredSize(new Dimension(680, 25));
+        lblCantidadProducto = new JLabel("Precio");
+        lblCantidadProducto.setPreferredSize(new Dimension(680, 25));
+
+        txtCodigoProducto = new JTextField();
+        txtCodigoProducto.setPreferredSize(new Dimension(680,25));
+        txtNombreProducto = new JTextField();
+        txtNombreProducto.setPreferredSize(new Dimension(680,25));
+        txtPrecioProducto = new JTextField();
+        txtPrecioProducto.setPreferredSize(new Dimension(680,25));
+        txtCantidadProducto = new JTextField();
+        txtCantidadProducto.setPreferredSize(new Dimension(680, 25));
+
+        btnProductoAgregar = new JButton("Agregar");
+        btnProductoAgregar.addActionListener(this);
+        btnProductoModificar = new JButton("Modificar");
+        btnProductoModificar.addActionListener(this);
+        btnProductoEliminar = new JButton("Eliminar");
+        btnProductoEliminar.addActionListener(this);
+
+        producto.add(rbAgregarProducto);
+        producto.add(rbModificarProducto);
+        producto.add(rbEliminarProducto);
+        producto.add(lblCodigoProducto);
+        producto.add(txtCodigoProducto);
+        producto.add(lblNombreProducto);
+        producto.add(txtNombreProducto);
+        producto.add(lblPrecioProducto);
+        producto.add(txtPrecioProducto);
+        producto.add(lblCantidadProducto);
+        producto.add(txtCantidadProducto);
+        producto.add(btnProductoAgregar);
+        producto.add(btnProductoModificar);
+        producto.add(btnProductoEliminar);
+
     }
     public void crearModuloEmpleado(){
         String[] roles = new String[] {"1","2"};
